@@ -1,6 +1,7 @@
 import os, time, msvcrt, random, csv
 trabajadores=["Juan Pérez","María García","Carlos López","Ana Martínez","Pedro Rodríguez","Laura Hernández","Miguel Sánchez","Isabel Gómez","Francisco Díaz","Elena Fernández"]
 sueldos=[]
+trabajadores_con_sueldos:[]
 def opc_1():
     print("\tASIGNAR SUELDOS ALEATORIOS\n")
     opc_sueldo=1
@@ -68,10 +69,31 @@ def opc_2():
         t_mayor_2.clear()
 
 def opc_3():
-    pass
+    if not sueldos:
+        print("Error! Primero debe asignarle un sueldo a los trabajadores!")
+    else:
+        print("\tVER ESTADÍSTICAS\n")
+        sueldo_alto=400000
+        sueldo_bajo=2600000
+        promedio=0
+        media=1
+        for x in sueldos:
+            promedio+=x
+            media*=x
+            if sueldo_bajo>=x:
+                sueldo_bajo=x
+            if sueldo_alto<x:
+                sueldo_alto=x
+        print(f"Sueldo más alto: $ {sueldo_alto}")
+        print(f"Sueldo más bajo: $ {sueldo_bajo}")
+        print(f"Promedio de sueldos: $ {promedio/10}")
+        print(f"Media geométrica: $ {media**(1/10)}\n")
 
 def opc_4():
-    pass
+    if not sueldos:
+        print("Error! Primero debe asignarle un sueldo a los trabajadores!")
+    else:
+        print("\tREPORTE DE SUELDOS\n")
 
 def opc_5():
     pass
