@@ -1,6 +1,6 @@
 from funciones import *
 os.system("cls")
-print("Bienvenido al generador de sueldos!")
+print("Bienvenido al programa generador y asignador de sueldos!")
 while True:
     print(">>Presione un tecla para continuar<<")
     msvcrt.getch()
@@ -20,8 +20,8 @@ while True:
     elif opc=="3":
         opc_3()
     elif opc=="4":
-        pass
+        opc_4()
     elif opc=="5":
-        pass
+        opc_5()
     else:
         print("Error! Debe ingresar un número del 1 al 5!")

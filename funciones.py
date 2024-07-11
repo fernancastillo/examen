@@ -1,9 +1,8 @@
-import os, time, msvcrt, random, csv
+import os, msvcrt, random, csv
 trabajadores=["Juan Pérez","María García","Carlos López","Ana Martínez","Pedro Rodríguez","Laura Hernández","Miguel Sánchez","Isabel Gómez","Francisco Díaz","Elena Fernández"]
 sueldos=[]
-trabajadores_con_sueldos:[]
 def opc_1():
-    print("\tASIGNAR SUELDOS ALEATORIOS\n")
+    print("\tASIGNAR SUELDOS ALEATORIOS:\n")
     opc_sueldo=1
     if len(sueldos)==10:
         while True:
@@ -20,8 +19,7 @@ def opc_1():
         for x in range(len(trabajadores)):
             sueldo_aleatorio=random.randint(300000,2500000)
             sueldos.append(sueldo_aleatorio)
-        print("Los sueldos se han asiganado exitosamente!")
-        print (sueldos)
+        print("Los sueldos se han asiganado exitosamente! Continúe con las otras opciones del menú.")
     else:
         print("No se han modificado los sueldos asignados.")
 
@@ -29,7 +27,7 @@ def opc_2():
     if not sueldos:
         print("Error! Primero debe asignarle un sueldo a los trabajadores!")
     else:
-        print("\tCLASIFICAR SUELDOS\n")
+        print("\tCLASIFICAR SUELDOS:\n")
         menor_800=0
         entre_800_y_2=0
         mayor_2=0
@@ -72,7 +70,7 @@ def opc_3():
     if not sueldos:
         print("Error! Primero debe asignarle un sueldo a los trabajadores!")
     else:
-        print("\tVER ESTADÍSTICAS\n")
+        print("\tVER ESTADÍSTICAS:\n")
         sueldo_alto=400000
         sueldo_bajo=2600000
         promedio=0
@@ -93,7 +91,27 @@ def opc_4():
     if not sueldos:
         print("Error! Primero debe asignarle un sueldo a los trabajadores!")
     else:
-        print("\tREPORTE DE SUELDOS\n")
+        print("\t\t\t\tREPORTE DE SUELDOS:\n")
+        trabajadores_con_sueldos=[]
+        for x in range(len(trabajadores)):
+            trabajador_con_sueldo={"nombre":trabajadores[x],
+                                   "sueldo_b": sueldos[x],
+                                   "d_salud": round(sueldos[x]*0.07),
+                                   "d_afp": round(sueldos[x]*0.12),
+                                   "sueldo_l": round(sueldos[x]*0.81)}
+            trabajadores_con_sueldos.append(trabajador_con_sueldo)
+        print("Nombre empleado\t\t\tSueldo Base\t\t\tDescuento Salud\t\t\tDescuento AFP\t\t\tSueldo Líquido")
+        for t in trabajadores_con_sueldos:
+            print(f"{t["nombre"]}\t\t\t${(t["sueldo_b"])}\t\t\t${(t["d_salud"])}\t\t\t\t${(t["d_afp"])}\t\t\t\t\t${(t["sueldo_l"])}")
+        print("")
+        with open("Reporte de Sueldos.csv","w",newline="") as arch:
+            escritor=csv.DictWriter(arch,["nombre","sueldo_b","d_salud","d_afp","sueldo_l"])
+            escritor.writeheader()
+            escritor.writerows(trabajadores_con_sueldos)
+        print("Además, se ha creado un archivo .CSV con estos datos\n")
 
 def opc_5():
-    pass
+    print("Finalizando programa...")
+    print("Desarrollado por Fernando Castillo")
+    print("19.319.885-6")
+    exit()
